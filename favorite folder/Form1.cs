@@ -93,10 +93,20 @@ namespace favorite_folder
             if (e.Button == MouseButtons.Right)
             {
                 contextMenuStrip1.Items.Clear();
-                contextMenuStrip1.Items.Add("Excute");
-                contextMenuStrip1.Items.Add("Add File");
-                contextMenuStrip1.Items.Add("Add Folder");
-                contextMenuStrip1.Items.Add("Remove");
+                ImageList mageList1 = new ImageList();
+                mageList1.Images.Add(
+                    Image.FromFile(Application.StartupPath + @"\..\..\Resources\excute.png"));
+                mageList1.Images.Add(
+                    Image.FromFile(Application.StartupPath + @"\..\..\Resources\add.png"));
+                mageList1.Images.Add(
+                    Image.FromFile(Application.StartupPath + @"\..\..\Resources\open.png"));
+                mageList1.Images.Add(
+                    Image.FromFile(Application.StartupPath + @"\..\..\Resources\delete.png"));
+
+                contextMenuStrip1.Items.Add("Excute", mageList1.Images[0]);
+                contextMenuStrip1.Items.Add("Add File", mageList1.Images[1]);
+                contextMenuStrip1.Items.Add("Add Folder", mageList1.Images[2]);
+                contextMenuStrip1.Items.Add("Remove", mageList1.Images[3]);
 
                 contextMenuStrip1.Show(MousePosition);
             }
@@ -104,20 +114,23 @@ namespace favorite_folder
 
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            switch (e.ClickedItem.Text)
+            if (listView_main.SelectedItems.Count>0)
             {
-                case "Excute":
-                    Process.Start(filelist[listView_main.SelectedItems[0].Index]);                
-                    break;
-                case "Add File":
-                    Addnewfile();
-                    break;
-                case "Add Folder":
-                    Addnewfolder();
-                    break;
-                case "Delete":
-                    Removefile();
-                    break;
+                switch (e.ClickedItem.Text)
+                {
+                    case "Excute":
+                        Process.Start(filelist[listView_main.SelectedItems[0].Index]);
+                        break;
+                    case "Add File":
+                        Addnewfile();
+                        break;
+                    case "Add Folder":
+                        Addnewfolder();
+                        break;
+                    case "Delete":
+                        Removefile();
+                        break;
+                }
             }
         }
 
