@@ -14,7 +14,7 @@ Could put some file which is opened frequency or you want make desktop more clea
 
 **Right click on your mouse anwher**, Could see all function include excute、add file、add folder and remove.
  
-https://github.com/lzhengwei/c-sharp_favorite-file/blob/master/image/3.jpg
+![Main function](https://github.com/lzhengwei/c-sharp_favorite-file/blob/master/image/3.jpg)
 
 ### Excute
 
@@ -43,7 +43,10 @@ Main skill of this program :
 2、C# listview usage indlude add item、icon and right mouse click show contextmenu.
 
 
+
 Here just simply introduce some key function at this program.
+
+Future work, Make file could change location in screen and add icon in contextmenu.
   
 If you want learn more about all project work or other problems, could send E-mail to contact me.
   
