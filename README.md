@@ -40,13 +40,11 @@ Main skill of this program :
 
 1、None border form and make it as real tablet.
 
-2、C# listview usage indlude add item、icon and right mouse click show contextmenu.
+2、C# listview usage indlude add item、icon 、 right mouse click show contextmenu、drog item to change location.
 
 
 
 Here just simply introduce some key function at this program.
-
-Future work, Make file could change location in screen and add icon in contextmenu.
   
 If you want learn more about all project work or other problems, could send E-mail to contact me.
   
