@@ -114,24 +114,26 @@ namespace favorite_folder
 
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            if (listView_main.SelectedItems.Count>0)
+
+            switch (e.ClickedItem.Text)
             {
-                switch (e.ClickedItem.Text)
-                {
-                    case "Excute":
+                case "Excute":
+                    if (listView_main.SelectedItems.Count>0)
+                    {       
                         Process.Start(filelist[listView_main.SelectedItems[0].Index]);
-                        break;
-                    case "Add File":
-                        Addnewfile();
-                        break;
-                    case "Add Folder":
-                        Addnewfolder();
-                        break;
-                    case "Delete":
-                        Removefile();
-                        break;
-                }
+                    }
+                    break;
+                case "Add File":
+                    Addnewfile();
+                    break;
+                case "Add Folder":
+                    Addnewfolder();
+                    break;
+                case "Delete":
+                    Removefile();
+                    break;
             }
+            
         }
 
         private void Addnewfolder()
@@ -227,6 +229,34 @@ namespace favorite_folder
                 Process.Start(filelist[listView_main.SelectedItems[0].Index]);       
             }
         }
+
+        private void listView_main_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            DoDragDrop(e.Item, DragDropEffects.All);
+        }
+        private int Dropindex;
+        private void listView_main_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = e.AllowedEffect;
+            var pos = listView_main.PointToClient(new Point(e.X, e.Y));
+            var hit = listView_main.HitTest(pos);
+            Dropindex = hit.Item.Index;
+        }
+
+        private void listView_main_DragDrop(object sender, DragEventArgs e)
+        {
+            var pos = listView_main.PointToClient(new Point(e.X, e.Y));
+            var hit = listView_main.HitTest(pos);
+            int index=hit.Item.Index;
+
+            String temp = filelist[index];
+            filelist[index] = filelist[Dropindex];
+            filelist[Dropindex] = temp;
+
+            refreshfilelist();
+        }
+
+
         
     }
 }

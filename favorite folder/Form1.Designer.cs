@@ -39,6 +39,7 @@
             // 
             // listView_main
             // 
+            this.listView_main.AllowDrop = true;
             this.listView_main.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.listView_main.BackgroundImage = global::favorite_folder.Properties.Resources._11843973_1181665195183723_183390284_n;
             this.listView_main.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -47,6 +48,9 @@
             this.listView_main.Size = new System.Drawing.Size(678, 354);
             this.listView_main.TabIndex = 0;
             this.listView_main.UseCompatibleStateImageBehavior = false;
+            this.listView_main.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.listView_main_ItemDrag);
+            this.listView_main.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView_main_DragDrop);
+            this.listView_main.DragEnter += new System.Windows.Forms.DragEventHandler(this.listView_main_DragEnter);
             this.listView_main.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView_main_MouseDoubleClick);
             this.listView_main.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listView_main_MouseDown);
             // 
