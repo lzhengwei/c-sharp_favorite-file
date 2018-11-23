@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +20,7 @@ namespace favorite_folder
             InitializeComponent();
         }
         public List<String> filelist;
+        public string defaultpath= Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private void Form1_Load(object sender, EventArgs e)
         {
             ImageList iconList = new ImageList();
@@ -119,8 +121,12 @@ namespace favorite_folder
             {
                 case "Excute":
                     if (listView_main.SelectedItems.Count>0)
-                    {       
-                        Process.Start(filelist[listView_main.SelectedItems[0].Index]);
+                    {
+                        
+                        listView_main.Cursor = Cursors.AppStarting;
+                        Thread excute_thread = new Thread( new ParameterizedThreadStart(excute_program));
+                        excute_thread.Start(filelist[listView_main.SelectedItems[0].Index]);
+                        listView_main.Cursor = Cursors.Default;
                     }
                     break;
                 case "Add File":
@@ -129,7 +135,7 @@ namespace favorite_folder
                 case "Add Folder":
                     Addnewfolder();
                     break;
-                case "Delete":
+                case "Remove":
                     Removefile();
                     break;
             }
@@ -147,7 +153,17 @@ namespace favorite_folder
         }
         private void InitialList()
         {
-             String readfilelist=Properties.Settings.Default.Filename_string;
+             String readfilelist="";
+             if (!File.Exists(defaultpath + "//favoritelist.txt"))
+             {
+                 var myFile = File.Create(defaultpath + "//favoritelist.txt"); ;
+                 myFile.Close();
+                 
+                 
+             }
+             StreamReader file = new StreamReader(defaultpath+"//favoritelist.txt");
+             readfilelist = file.ReadToEnd();
+             file.Close();
              String[] filestring = readfilelist.Split('\n');
              foreach (String filename in filestring)
              {
@@ -215,8 +231,12 @@ namespace favorite_folder
             {
                 savefilelist += filename + "\n";
             }
-            Properties.Settings.Default.Filename_string = savefilelist;
-            Properties.Settings.Default.Save();
+ /*           Properties.Settings.Default.Filename_string = savefilelist;
+            Properties.Settings.Default.Save();*/
+            System.IO.StreamWriter listfilewriter =
+    new System.IO.StreamWriter(defaultpath + "//favoritelist.txt");
+            listfilewriter.Write(savefilelist);
+            listfilewriter.Close();
         }
 
         private void listView_main_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -226,7 +246,10 @@ namespace favorite_folder
             int index = item.Index;
             if (index >= 0)
             {
-                Process.Start(filelist[listView_main.SelectedItems[0].Index]);       
+                listView_main.Cursor = Cursors.AppStarting;
+                Thread excute_thread = new Thread(new ParameterizedThreadStart(excute_program));
+                excute_thread.Start(filelist[listView_main.SelectedItems[0].Index]);
+                
             }
         }
 
@@ -255,8 +278,23 @@ namespace favorite_folder
 
             refreshfilelist();
         }
+        //bool isinthread = false;
+        private void excute_program(object location)
+        {
+            Process.Start((string)location);
+            updateCursor();
 
-
+        }
+        private void updateCursor()
+        {
+            Func<int> del;
+            del = delegate()
+            {
+                listView_main.Cursor = Cursors.Default;
+                return 0;
+            };
+            Invoke(del);
+        }
         
     }
 }

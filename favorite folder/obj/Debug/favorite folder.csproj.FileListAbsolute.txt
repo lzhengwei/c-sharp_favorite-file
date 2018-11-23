@@ -1,9 +1,9 @@
 C:\Users\zhengwei\Documents\Visual Studio 2012\Projects\favorite folder\favorite folder\bin\Debug\favorite folder.exe.config
 C:\Users\zhengwei\Documents\Visual Studio 2012\Projects\favorite folder\favorite folder\bin\Debug\favorite folder.exe
 C:\Users\zhengwei\Documents\Visual Studio 2012\Projects\favorite folder\favorite folder\bin\Debug\favorite folder.pdb
-C:\Users\zhengwei\Documents\Visual Studio 2012\Projects\favorite folder\favorite folder\obj\Debug\favorite folder.csprojResolveAssemblyReference.cache
 C:\Users\zhengwei\Documents\Visual Studio 2012\Projects\favorite folder\favorite folder\obj\Debug\favorite_folder.Form1.resources
 C:\Users\zhengwei\Documents\Visual Studio 2012\Projects\favorite folder\favorite folder\obj\Debug\favorite_folder.Properties.Resources.resources
 C:\Users\zhengwei\Documents\Visual Studio 2012\Projects\favorite folder\favorite folder\obj\Debug\favorite folder.csproj.GenerateResource.Cache
 C:\Users\zhengwei\Documents\Visual Studio 2012\Projects\favorite folder\favorite folder\obj\Debug\favorite folder.exe
 C:\Users\zhengwei\Documents\Visual Studio 2012\Projects\favorite folder\favorite folder\obj\Debug\favorite folder.pdb
+C:\Users\zhengwei\Documents\Visual Studio 2012\Projects\favorite folder\favorite folder\obj\Debug\favorite folder.csprojResolveAssemblyReference.cache
